@@ -2,14 +2,12 @@ import tkinter
 
 
 class Button:
-    __button = 0
-
-    def make(self, window, cmd):
+    def make(self, window, click):
         self.__button = tkinter.Button(
             window,
             text="run",
             overrelief="solid",
-            command=cmd,
+            command=click,
             repeatdelay=200,
             repeatinterval=100,
         )

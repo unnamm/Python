@@ -1,8 +1,6 @@
 import tkinter
 
 class Window:
-    __window = 0
-
     def make(self):
         self.__window = tkinter.Tk()
         self.__window.title("window name")
