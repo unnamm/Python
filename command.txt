@@ -1,0 +1,2 @@
+Save All:           Ctrl+K, S
+Auto formatting:    Shift+Alt+F
