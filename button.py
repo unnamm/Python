@@ -11,4 +11,4 @@ class Button:
             repeatdelay=200,
             repeatinterval=100,
         )
-        self.__button.pack()
+        self.__button.pack(side='top', anchor='w', padx=10, pady=10)
