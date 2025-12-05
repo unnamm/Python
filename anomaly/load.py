@@ -23,7 +23,7 @@ def load_images(filename, target_size):
         crop = crop.resize(target_size)
         images.append(crop)
 
-    arr = numpy.array(images[0]).astype("float32") / 255.0
+    arr = numpy.array(images[0]) / 255.0
     return arr
 
 
@@ -44,40 +44,39 @@ def detect_anomaly(img, model, threshold=0.01):
 def show_anomaly_result(img, model):
     # 입력 이미지 준비
     img_batch = numpy.expand_dims(img, axis=0)
-    
+
     # 복원 이미지
     reconstructed = model.predict(img_batch)[0]
-    
+
     # 오차 맵 (원본 - 복원)
     error_map = numpy.abs(img - reconstructed)
-    
+
     # 시각화
-    plt.figure(figsize=(12,4))
-    
+    plt.figure(figsize=(12, 4))
+
     # 원본
-    plt.subplot(1,3,1)
+    plt.subplot(1, 3, 1)
     plt.title("Original")
     plt.imshow(img)
     plt.axis("off")
-    
+
     # 복원
-    plt.subplot(1,3,2)
+    plt.subplot(1, 3, 2)
     plt.title("Reconstructed")
     plt.imshow(reconstructed)
     plt.axis("off")
-    
+
     # 오차 맵
-    plt.subplot(1,3,3)
+    plt.subplot(1, 3, 3)
     plt.title("Error Map")
     plt.imshow(error_map, cmap="hot")
     plt.axis("off")
-    
+
     plt.show()
 
 
-
 autoencoder = load_model("F:\\Python\\model.keras")
-test_img = load_images("image path", (256, 256))
+test_img = load_images("path", (256, 256))
 is_anomaly, score = detect_anomaly(test_img, autoencoder, threshold=0.01)
 print("Anomaly:", is_anomaly, "Score:", score)
 show_anomaly_result(test_img, autoencoder)

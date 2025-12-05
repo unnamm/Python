@@ -23,6 +23,7 @@ def load_images(folder, target_size):
             crop = half.crop((x0, 0, x1, img.height))
 
             crop = crop.resize(target_size)
+            crop = numpy.array(crop) / 255.0
             images.append(crop)
 
         print(f"loading... {len(images)//3} / {len(files)}")
@@ -30,7 +31,7 @@ def load_images(folder, target_size):
     return numpy.array(images)
 
 
-normal_images = load_images("image folder", (256, 256))
+normal_images = load_images("folder path", (256, 256))
 
 input_img = keras.Input(shape=(256, 256, 3))
 
